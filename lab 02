@@ -13,7 +13,7 @@ int main()
 phone ph1={"212","767","8900"};  
 phone ph2; 
 
-cout<<"\nenter your area code,exchange and number:"; 
+cout<<"\nNhap your area code,exchange and number:"; 
 cin>>ph2.area>>ph2.exchange>>ph2.number; 
 cout<<"\nmy number is ("<<ph1.area<<")"<<ph1.exchange<<"-"<<ph1.number; 
 cout<<"\nyour number is ("<<ph2.area<<")"<<ph2.exchange<<"-"<<ph2.number; 
@@ -22,43 +22,146 @@ getch();
 return 0; 
 }
 
-// bai 3
-#include<iostream> 
-#include<conio.h> 
+//bai 3
+#include <iostream>
 using namespace std;
-
-int main() 
-	{ 
-char c,operatr; 
-double operand1,operand2; 
- do 
-	{ 
-cout<<"Nhap so thu nhat, phep tinh , so thu hai  "; \
-cin>>operand1>>operatr>>operand2; 
-switch(operatr) 
-	{ 
-case '+':cout<<"Ket qua ="<<operand1+operand2;  
-break; 
-case '-':cout<<"Dap an="<<operand1-operand2;  
-break; 
-case '*':cout<<"Cau tra loi ="<<operand1*operand2;  
-break; 
-case '/':cout<<"Cau tra loi ="<<operand1/operand2;  
-break; 
-default:cout<<"phep toan khong hop le "; 
-	}
- do 
- 	{ 
- cout<<"\nDo another(y/n)?:"; 
- cin>>c; 
- if(c!='y'&&c!='n') 
- cout<<"lua chon khong hop le "; 
- 	}while(c!='y'&&c!='n'); 
- 	}while(c=='y'); 
- return 0;
+int main()
+{
+	double x1, x2, ans;
+	char oper, ch;
+	do 
+{
+	cout << "\nso thu 1, phep toan , so thu 2: ";
+	cin >> x1 >> oper >> x2;
+	switch(oper)
+{
+	case '+': ans= x1+x2; 
+	break;
+	case '-': ans=x1-x2; 
+	break;
+	case '*': ans=x1*x2; 
+	break;
+	case '/': ans=x1/x2;
+	break;
+	default: ans= 0;
+}
+	cout << "Dap an = " << ans;
+	cout << "\nDo another (Enter 'y' or 'n')? ";
+	cin >> ch;
+} 
+	while( ch != 'n' );
+	return 0;
+}
+//bai 2
+#include<iostream>
+using namespace std;
+int main()
+	{
+		int  i,y;
+		char ch;
+		float r,ans,n;
+		cout<<"Nhap tong tien gui:";
+		cin>>i;
+		cout<<"Nhap so nam:";
+		cin>>y;
+		cout<<"Nhap lai suat :";
+		cin>>r;
  
+		for(ans=1;ans<=i;ans++)
+ 	{
+		ans=i+(i*r/100);
+		cout<<" dap an:"<<ans<<endl;
+		cout<<"Tiep tuc (y/n)";
+		cin>>ch;
   }
-  
-  
- // bai 2
+		cout<<endl;
+		return 0;
+}
 
+// bai 4 
+#include<iostream>
+#include<conio.h>
+#include<stdio.h>
+using namespace std;
+struct complex{
+	int tu;
+	int mau;
+};
+complex cong(complex c1, complex c2){
+	complex c3;
+	c3.tu=(c1.tu*c2.mau+c1.mau*c2.tu);
+	c3.mau=c1.mau*c2.mau;
+	return c3;
+}
+complex tru(complex c1, complex c2){
+	complex c3;
+	c3.tu=(c1.tu*c2.mau-c1.mau*c2.tu);
+	c3.mau=c1.mau*c2.mau;
+	return c3;
+}
+complex nhan(complex c1, complex c2){
+	complex c3;
+	c3.tu=c1.tu*c2.tu;
+	c3.mau=c1.mau*c2.mau;
+	return c3;
+}
+complex chia(complex c1, complex c2){
+	int temp=c2.tu;
+	c2.tu=c2.mau;
+	c2.mau=temp;
+	return nhan(c1,c2);
+}
+void nhap(complex &c){
+	cout<<"nhap tu :";
+	cin>>c.tu;
+	while(true){
+		cout<<"nhap mau :";
+		cin>>c.mau;
+		if(c.mau==0){
+			cout<<"mau khong the bang 0"<<endl;
+		}else{
+			break;
+		}
+	}
+}
+void xuat(complex c){
+	cout<<c.tu<<"/"<<c.mau<<endl;
+}
+void tinh(){
+	complex c1;
+	complex c2;
+	char o;
+	while(true){
+		nhap(c1);
+		cout<<"Operator:";
+		cin>>o;
+		nhap(c2);
+		switch(o){
+			case '+' : {
+				xuat(cong(c1,c2));
+				break;
+			};
+			case '-' : {
+					xuat(tru(c1,c2));
+				break;
+			}
+			case '*' : {
+					xuat(nhan(c1,c2));
+				break;
+			}
+			case '/' : {
+				xuat(chia(c1,c2));
+				break;
+			}
+		}
+		cout<<"do you wanna continue?(y/n)"<<endl;
+		char a;
+		cin>>a;
+		if(a=='n'){
+			break;
+		}
+	}
+}
+int main(){
+	tinh();
+}
