@@ -1,1 +1,109 @@
-# Labs
+// Bai 1
+#include <iostream>
+#include <conio.h>
+
+using namespace std;
+
+class time{
+ private:
+  int hours,minutes,seconds;
+ public:
+  time(){
+   hours = minutes = seconds = 0;
+  }
+  time(int h, int m, int s){
+   hours = h;
+   minutes = m;
+   seconds = s;
+  }
+  void showTime() const {
+   cout << hours << ':' << minutes << ':' << seconds;
+  }
+  void addTime(time x, time y){
+   seconds = x.seconds + y.seconds;
+   if(seconds>59){
+    seconds-=60;
+    minutes++;
+   }
+   minutes += x.minutes + y.minutes;
+   if(minutes>59){
+    minutes-=60;
+    hours++;
+   }
+   hours+=x.hours+y.hours;
+  }
+};
+
+int main(){
+ 
+ const time a(2,23,45), b(4,25,15);
+ time c;
+ c.addTime(a,b);
+ c.showTime();
+}
+
+// bai 2
+#include <iostream>
+#include <conio.h>
+
+using namespace std;
+
+class employee{
+ private:
+  int emp_num;
+  float emp_comp;
+ public:
+  void entData(){
+   cout << "Enter Employee\'s Number ";
+   cin >> emp_num;
+   cout << "Enter Employee\'s Salary " ;
+   cin >> emp_comp;
+  }
+  void display(){
+   cout << "Employee\'s Number " << emp_num << endl;
+   cout << "Enployee\'s Salary " << emp_comp << endl;
+  }
+};
+
+int main(){
+ 
+ employee emp1, emp2, emp3;
+ cout << "Enter Data For Employee 1" << endl;
+ emp1.entData();
+ cout << "Enter Data For Employee 2" << endl;
+ emp2.entData();
+ cout << "Enter Data For Employee 3" << endl;
+ emp3.entData();
+ cout << "Total Data Entered Is" << endl;
+ emp1.display();
+ emp2.display();
+ emp3.display();
+ 
+}
+// bai 3
+#include<iostream>
+using namespace std;
+class counter
+{
+private:
+       static int count;
+       int num;
+public:
+counter()
+       {
+              static int count=0;
+              num=++count;
+       }
+void show()
+       {
+              cout<<"I am Oject "<<num<<"\n";
+       }
+};
+int main()
+       { counter x[3];
+              for(int i=0;i<3;i++)
+              {
+                     x[i].show();
+              }
+       }
+ 
